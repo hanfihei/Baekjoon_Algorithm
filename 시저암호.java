@@ -38,7 +38,7 @@ class si_Solution {
                 sb.append(' ');
             }
         }
-        
+
         String answer = sb.toString();
         return answer;
     }
