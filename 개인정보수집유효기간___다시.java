@@ -1,6 +1,6 @@
 package 프로그래머스;
 
-public class 개인정보수집유효기간_다시 {
+public class 개인정보수집유효기간___다시 {
 
     public static void main(String[] args) {
 
