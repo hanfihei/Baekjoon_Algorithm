@@ -37,7 +37,7 @@ class x_Solution {
         for(long i = x; count<n; i = i+x){
             answer[count++] = i;
         }
-        
+
         return answer;
     }
 }
