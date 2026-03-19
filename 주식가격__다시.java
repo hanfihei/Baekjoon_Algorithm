@@ -3,7 +3,7 @@ package 프로그래머스;
 import java.util.Arrays;
 import java.util.Stack;
 
-public class 주식가격 {
+public class 주식가격__다시 {
     public static void main(String[] args) {
         Solution7 solution = new Solution7();
 
@@ -11,9 +11,9 @@ public class 주식가격 {
         int[] result1 = solution.solution(prices1);
         System.out.println(Arrays.toString(result1)); // [4, 3, 1, 1, 0]
 
-        int[] prices2 = {5, 4, 3, 2, 1};
+        int[] prices2 = {2, 2, 1};
         int[] result2 = solution.solution(prices2);
-        System.out.println(Arrays.toString(result2)); // [1, 1, 1, 1, 0]
+        System.out.println(Arrays.toString(result2)); // [2, 1, 0]
     }
 }
 
@@ -24,13 +24,18 @@ class Solution7 {
 
         Stack<Integer> st = new Stack<>();
 
-        for(int i = 0; i < prices.length; i++) {
+
+        for(int i = prices.length-1; i > -1; i--) {
             st.push(prices[i]);
         }
+        System.out.println("          " +st);
 
-        for(int i = 0; !st.isEmpty(); i++) {
+        for(int i = 0; i<prices.length-1; i++) {
             int num = st.pop();
-            answer[i] = count.count(num, st);
+            Stack<Integer> copy = new Stack<>();
+            copy.addAll(st);
+
+            answer[i] = count.count(num, copy);
         }
 
 
@@ -42,14 +47,22 @@ class numCount {
     public int count(int num, Stack st) {
 
         int count = 0;
+        System.out.println(st);
+
+        if(num > (int)st.peek()){
+            return 1;
+        }
 
         while(!st.isEmpty()) {
-            int count2 = st.pop();
-            
-            if(num )
+            int count2 = (int)st.pop();
+            if(num <= count2){
+                count++;
+            }
+            else
+                return count+1;
         }
 
 
-        return 0;
+        return count;
     }
 }
