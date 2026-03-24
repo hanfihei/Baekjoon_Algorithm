@@ -24,6 +24,7 @@ public class 기능개발 {
         System.out.println(); // 1 3 2
     }
 }
+
 class gi_Solution {
     public int[] solution(int[] progresses, int[] speeds) {
         int[] countArr = new int[progresses.length];
@@ -65,6 +66,6 @@ class gi_Solution {
             arr[i] = answer[i];
         }
 
-        return answer;
+        return arr;
     }
 }
