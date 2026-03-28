@@ -34,11 +34,12 @@ class ge_Solution {
 
         Queue<int[]> q = new LinkedList<>();
 
+
         // 상하좌우 이동 (아래, 위, 오른쪽, 왼쪽)
-        int[] dx = {1, -1, 0, 0};
-        int[] dy = {0, 0, 1, -1};
+        int[] dx = {1, -1, 0, 0};//y축 0으록 고정
+        int[] dy = {0, 0, 1, -1};//x는 0으로 고정
         
-        // 1. 시작점 처리
+        // 시작점 지정
         dist[0][0] = 1;
 
         // 큐에 시작점 넣기 → 여기서부터 탐색 시작
@@ -49,7 +50,7 @@ class ge_Solution {
         while (!q.isEmpty()) {
 
             // 현재 위치 하나 꺼냄
-            int[] now = q.poll();
+            int[] now = q.poll(); //0,0을 꺼냄
             int x = now[0];
             int y = now[1];
 
