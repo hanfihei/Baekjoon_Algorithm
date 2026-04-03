@@ -1,7 +1,6 @@
 package 프로그래머스;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class 할인행사 {
     public static void main(String[] args) {
@@ -25,27 +24,44 @@ class sa_Solution {
     public int solution(String[] want, int[] number, String[] discount) {
         int count = 0;
 
-        Map<String, Integer> map = new HashMap<>();
-
+        Map<String, Integer> map = new HashMap();
         for(int i = 0; i < want.length; i++) {
             map.put(want[i], number[i]);
         }
 
-        for(int i = 0; i < discount.length-9; i++) {
-            int sum = 0;
-            Map<String, Integer> copy = new HashMap<>(map);
-            for(int j = i; j < i+10; j++) {
-                String item = discount[j];
-                int num = copy.getOrDefault(item, 0);
-                if(copy.containsKey(item) && num > 0) {
-                    copy.put(item,copy.get(item) - 1);
-                    sum++;
-                }
+        Map<String, Integer> dc = new HashMap();
+        // 10일치 먼저 넣기
+        for(int i = 0; i < 10; i++) {
+            String item = discount[i];
+            dc.put(item, dc.getOrDefault(item, 0) + 1);
+        }
+
+        if (map.equals(dc)) {
+            count++;
+        }
+
+        int num = 0;
+
+
+        // 10일 이후
+        for(int i = 10; i<discount.length; i++) {
+
+            String item = discount[num++];
+            dc.put(item, dc.getOrDefault(item, 0) - 1);
+
+            // 이 처리를 안 해주면 map.equals(dc)가 제대로 실행되지 않음
+            if (dc.get(item) == 0) {
+                dc.remove(item);
             }
-            if(sum == 10) {
+
+            String item2 = discount[i];
+            dc.put(item2, dc.getOrDefault(item2, 0) + 1);
+
+            if (map.equals(dc)) {
                 count++;
-                System.out.println(i);
             }
+
+
         }
 
         return count;
