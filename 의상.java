@@ -8,53 +8,60 @@ public class 의상 {
     public static void main(String[] args) {
         dml_Solution solution = new dml_Solution();
 
-        // 케이스 1: 한 종류만 있는 경우
-        String[][] clothes1 = {
-                {"hat1", "headgear"},
-                {"hat2", "headgear"}
-        };
-
-        // 케이스 2: 모든 종류가 서로 다른 경우
-        String[][] clothes2 = {
+        // 케이스 4: 종류 2개, 각각 1개씩
+        String[][] clothes4 = {
                 {"a", "x"},
-                {"b", "y"},
-                {"c", "z"}
-        };
+                {"b", "y"}
+        }; // 정답: 3
 
-        // 케이스 3: 한 개만 있는 경우
-        String[][] clothes3 = {
-                {"only", "single"}
-        };
 
-        System.out.println(solution.solution(clothes1));//2
-        System.out.println(solution.solution(clothes2));//7
-        System.out.println(solution.solution(clothes3));//1
+// 케이스 5: 종류 2개, 하나는 여러개
+        String[][] clothes5 = {
+                {"a1", "x"},
+                {"a2", "x"},
+                {"b1", "y"}
+        }; // 정답: 5
+
+
+// 케이스 6: 종류 3개, 개수 섞인 경우
+        String[][] clothes6 = {
+                {"a1", "x"},
+                {"a2", "x"},
+                {"b1", "y"},
+                {"c1", "z"}
+        }; // 정답: 11
+
+
+// 케이스 8: 종류 3개, 각각 2개씩
+        String[][] clothes8 = {
+                {"a1", "x"}, {"a2", "x"},
+                {"b1", "y"}, {"b2", "y"},
+                {"c1", "z"}, {"c2", "z"}
+        }; // 정답: 26
+
+        System.out.println(solution.solution(clothes4));//2
+        System.out.println(solution.solution(clothes5));//7
+        System.out.println(solution.solution(clothes6));//1
+        System.out.println(solution.solution(clothes8));//1
+
+
     }
 }
 
 class dml_Solution {
     public int solution(String[][] clothes) {
-        int answer = 0;
         int count = 1;
         Map<String, Integer> map = new HashMap<>();
 
-        for(int i = 0; i < clothes.length; i++) {
+        for (int i = 0; i < clothes.length; i++) {
             String str = clothes[i][1];
             map.put(str, map.getOrDefault(str, 0) + 1);
-            answer++;
         }
 
         for (int value : map.values()) {
-            if(map.size() > 1)
-                if(value == 1)
-                    count++;
-                else
-                    count *= value;
+            count *= (value + 1);
         }
 
-        if(count == 1)
-            return answer;
-        else
-            return answer+count;
+        return count -1;
     }
 }
