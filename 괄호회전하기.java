@@ -20,11 +20,6 @@ class rhkf_Solution {
     public int solution(String s) {
         int answer = 0;
 
-        // 일단 다 큐에 넣고
-        // 다 넣고 그 뭐엿지 암튼 {일떄 개수를 세고 }로 닫으면서 개수를 세고 나머지에 0이 아니면 false임
-        // 그런식으로 하고 for문을 s.length만큼 돌리면서 앞쪽에서 뺴고 그걸 뒤쪽에 넣어서 반복함
-
-
         boolean ch = aaa(s);
         if(ch) {
             answer++;
